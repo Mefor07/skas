@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Jiri</title>
+
+        <style>
+
+            body, html {
+                margin: 0;
+                padding: 0;
+                height: 100%;
+            }
+
+            .page-content {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+            }
+
+            
+            .card-bordered {
+                border: 1px solid #ebebeb;
+            }
+
+            .card {
+                border: 0;
+                border-radius: 0px;
+                margin-bottom: 30px;
+                -webkit-box-shadow: 0 2px 3px rgba(0,0,0,0.03);
+                box-shadow: 0 2px 3px rgba(0,0,0,0.03);
+                -webkit-transition: .5s;
+                transition: .5s;
+            }
+
+            .padding {
+                padding: 3rem !important
+            }
+
+            body {
+                background-color: #f9f9fa
+            }
+
+            .card-header:first-child {
+                border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+            }
+
+
+            .card-header {
+                display: -webkit-box;
+                display: flex;
+                -webkit-box-pack: justify;
+                justify-content: space-between;
+                -webkit-box-align: center;
+                align-items: center;
+                padding: 15px 20px;
+                background-color: transparent;
+                border-bottom: 1px solid rgba(77,82,89,0.07);
+            }
+
+            .card-header .card-title {
+                padding: 0;
+                border: none;
+            }
+
+            h4.card-title {
+                font-size: 17px;
+            }
+
+            .card-header>*:last-child {
+                margin-right: 0;
+            }
+
+            .card-header>* {
+                margin-left: 8px;
+                margin-right: 8px;
+            }
+
+            .btn-secondary {
+                color: #4d5259 !important;
+                background-color: #e4e7ea;
+                border-color: #e4e7ea;
+                color: #fff;
+            }
+
+            .btn-xs {
+                font-size: 11px;
+                padding: 2px 8px;
+                line-height: 18px;
+            }
+            .btn-xs:hover{
+                color:#fff !important;
+            }
+
+
+
+
+            .card-title {
+                font-family: Roboto,sans-serif;
+                font-weight: 300;
+                line-height: 1.5;
+                margin-bottom: 0;
+                padding: 15px 20px;
+                border-bottom: 1px solid rgba(77,82,89,0.07);
+            }
+
+
+            .ps-container {
+                position: relative;
+            }
+
+            .ps-container {
+                -ms-touch-action: auto;
+                touch-action: auto;
+                overflow: hidden!important;
+                -ms-overflow-style: none;
+            }
+
+            .media-chat {
+                padding-right: 64px;
+                margin-bottom: 0;
+            }
+
+            .media {
+                padding: 16px 12px;
+                -webkit-transition: background-color .2s linear;
+                transition: background-color .2s linear;
+            }
+
+            .media .avatar {
+                flex-shrink: 0;
+            }
+
+            .avatar {
+                position: relative;
+                display: inline-block;
+                width: 36px;
+                height: 36px;
+                line-height: 36px;
+                text-align: center;
+                border-radius: 100%;
+                background-color: #f5f6f7;
+                color: #8b95a5;
+                text-transform: uppercase;
+            }
+
+            .media-chat .media-body {
+                -webkit-box-flex: initial;
+                flex: initial;
+                display: table;
+            }
+
+            .media-body {
+                min-width: 0;
+            }
+
+            .media-chat .media-body p {
+                position: relative;
+                padding: 6px 8px;
+                margin: 4px 0;
+                background-color: #f5f6f7;
+                border-radius: 3px;
+                font-weight: 100;
+                color:#9b9b9b;
+            }
+
+            .media>* {
+                margin: 0 8px;
+            }
+
+            .media-chat .media-body p.meta {
+                background-color: transparent !important;
+                padding: 0;
+                opacity: .8;
+            }
+
+            .media-meta-day {
+                -webkit-box-pack: justify;
+                justify-content: space-between;
+                -webkit-box-align: center;
+                align-items: center;
+                margin-bottom: 0;
+                color: #8b95a5;
+                opacity: .8;
+                font-weight: 400;
+            }
+
+            .media {
+                padding: 16px 12px;
+                -webkit-transition: background-color .2s linear;
+                transition: background-color .2s linear;
+            }
+
+            .media-meta-day::before {
+                margin-right: 16px;
+            }
+
+            .media-meta-day::before, .media-meta-day::after {
+                content: '';
+                -webkit-box-flex: 1;
+                flex: 1 1;
+                border-top: 1px solid #ebebeb;
+            }
+
+            .media-meta-day::after {
+                content: '';
+                -webkit-box-flex: 1;
+                flex: 1 1;
+                border-top: 1px solid #ebebeb;
+            }
+
+            .media-meta-day::after {
+                margin-left: 16px;
+            }
+
+            .media-chat.media-chat-reverse {
+                padding-right: 12px;
+                padding-left: 64px;
+                -webkit-box-orient: horizontal;
+                -webkit-box-direction: reverse;
+                flex-direction: row-reverse;
+            }
+
+            .media-chat {
+                padding-right: 64px;
+                margin-bottom: 0;
+            }
+
+            .media {
+                padding: 16px 12px;
+                -webkit-transition: background-color .2s linear;
+                transition: background-color .2s linear;
+            }
+
+            .media-chat.media-chat-reverse .media-body p {
+                float: right;
+                clear: right;
+                background-color: #48b0f7;
+                color: #fff;
+            }
+
+            .media-chat .media-body p {
+                position: relative;
+                padding: 6px 8px;
+                margin: 4px 0;
+                background-color: #f5f6f7;
+                border-radius: 3px;
+            }
+
+
+            .border-light {
+                border-color: #f1f2f3 !important;
+            }
+
+            .bt-1 {
+                border-top: 1px solid #ebebeb !important;
+            }
+
+            .publisher {
+                position: relative;
+                display: -webkit-box;
+                display: flex;
+                -webkit-box-align: center;
+                align-items: center;
+                padding: 12px 20px;
+                background-color: #f9fafb;
+            }
+
+            .publisher>*:first-child {
+                margin-left: 0;
+            }
+
+            .publisher>* {
+                margin: 0 8px;
+            }
+
+            .publisher-input {
+                -webkit-box-flex: 1;
+                flex-grow: 1;
+                border: none;
+                outline: none !important;
+                background-color: transparent;
+            }
+
+            button, input, optgroup, select, textarea {
+                font-family: Roboto,sans-serif;
+                font-weight: 300;
+            }
+
+            .publisher-btn {
+                background-color: transparent;
+                border: none;
+                color: #8b95a5;
+                font-size: 16px;
+                cursor: pointer;
+                overflow: -moz-hidden-unscrollable;
+                -webkit-transition: .2s linear;
+                transition: .2s linear;
+            }
+
+            .file-group {
+                position: relative;
+                overflow: hidden;
+            } 
+
+            .publisher-btn {
+                background-color: transparent;
+                border: none;
+                color: #cac7c7;
+                font-size: 16px;
+                cursor: pointer;
+                overflow: -moz-hidden-unscrollable;
+                -webkit-transition: .2s linear;
+                transition: .2s linear;
+            } 
+
+            .file-group input[type="file"] {
+                position: absolute;
+                opacity: 0;
+                z-index: -1; 
+                width: 20px;
+            }
+
+            .text-info {
+                color: #48b0f7 !important;
+            }
+
+
+            /**
+            * modifications made for chat bubble
+            */
+            .media-chat {
+                display: flex;
+                align-items: flex-start;
+                margin-bottom: 20px;
+            }
+
+            .media-chat.media-chat-reverse {
+                align-items: flex-end;
+            }
+
+            .media-chat .media-body {
+                max-width: 70%;
+                padding: 10px;
+                border-radius: 10px;
+                /*background-color: #DCF8C6;*/ /* Light green for sender */
+            }
+
+            .media-chat.media-chat-reverse .media-body {
+                /*background-color: #E6E6E6;*/ /* Light gray for receiver */
+            }
+
+            .typing-animation {
+                overflow: hidden;
+                display: inline-block;
+                position: relative;
+            }
+
+            .typing-animation::after {
+                content: "Typing...";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 0;
+                overflow: hidden;
+                white-space: nowrap;
+                animation: typing-animation-keyframes 1.5s infinite;
+            }
+
+            @keyframes typing-animation-keyframes {
+                0%, 100% {
+                    width: 0;
+                }
+                50% {
+                    width: 100%;
+                }
+            }
+
+            #typing{
+                visibility: hidden;
+            }
+
+            .window-header{
+                display: flex;
+            }
+
+
+
+        </style>
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    </head>
+
+    <body>
+        <!--<div class="chat-container">
+            <h1>Hello i am Jiri</h1>
+            <div style="background-color: aquamarine;" id = "ques">
+            <p>Hiiiii</p>
+            </div>
+
+            <div class="mb-3 text-end">
+                <button type="button" id="ask-btn" class="btn btn-md btn-success">Answer</button>
+            </div>
+            <script>
+                $(document).ready(function () {
+                    $("#ask-btn").click(async function (event) {
+                        event.preventDefault();
+                        const formData = new FormData();
+                        const id = document.getElementById('ques') ;  
+                        // var file = fileInput.files[0];           
+                        
+                        formData.append('answer', "what is your name?");
+                        // formData.append('filename', file.name)
+                        let response = await fetch('/ask', {
+                            method: "POST",
+                            body: formData                
+                        });                
+                        processUploadResponse(id, response);  
+                    });
+                });
+
+                async function processUploadResponse(id, response){
+                    var json = await response.json();
+                    console.log(json.question)
+                    id.innerHTML += "<p class='receiver'>"+json.question+"</p>";
+                }
+            </script>
+        </div>-->
+
+        <div class="page-content page-container" id="page-content" style="display: flex;">
+
+            <div class="padding">
+               <div class="row container d-flex justify-content-center">
+                  
+                  <div class="col-md-12">
+                     <div class="card card-bordered">
+                        <div style = "display: flex; flex-direction: row; justify-content: space-between;" class="alert alert-info" role="alert">
+                            <h4>Your Current Score is:  <span id="score"></span></h4>
+                            <h4>Similarity score: <span id="similarity_score"></span></h4>
+                        </div>
+                        <div class="card-header">
+                           <h4 class="card-title"><strong>TBU (SKAS) Q&A Chat</strong></h4>
+                           <a id="typing" style="height: 30px; width:70px;" class="btn btn-xs btn-success typing-animation" href="#" data-abc="true"></a>
+                        </div>
+                        <div class="ps-container ps-theme-default ps-active-y" id="chat-content" style="overflow-y: scroll !important; height:400px !important;">
+                           <!--<div class="media media-chat">
+                              <img class="avatar" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="...">
+                              <div class="media-body">
+                                 <p>Hi</p>
+                                 <p>How are you ...???</p>
+                                 <p>What are you doing tomorrow?<br> Can we come up a bar?</p>
+                                 <p class="meta"><time datetime="2018">23:58</time></p>
+                              </div>
+                           </div>
+                           <div class="media media-meta-day">Today</div>
+                           <div class="media media-chat media-chat-reverse">
+                              <div class="media-body">
+                                 <p>Hiii, I'm good.</p>
+                                 <p>How are you doing?</p>
+                                 <p>Long time no see! Tomorrow office. will be free on sunday.</p>
+                                 <p class="meta"><time datetime="2018">00:06</time></p>
+                              </div>
+                           </div>
+                           <div class="media media-chat">
+                              <img class="avatar" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="...">
+                              <div class="media-body">
+                                 <p>Okay</p>
+                                 <p>We will go on sunday? </p>
+                                 <p class="meta"><time datetime="2018">00:07</time></p>
+                              </div>
+                           </div>
+                           <div class="media media-chat media-chat-reverse">
+                              <div class="media-body">
+                                 <p>That's awesome!</p>
+                                 <p>I will meet you Sandon Square sharp at 10 AM</p>
+                                 <p>Is that okay?</p>
+                                 <p class="meta"><time datetime="2018">00:09</time></p>
+                              </div>
+                           </div>
+                           <div class="media media-chat">
+                              <img class="avatar" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="...">
+                              <div class="media-body">
+                                 <p>Okay i will meet you on Sandon Square </p>
+                                 <p class="meta"><time datetime="2018">00:10</time></p>
+                              </div>
+                           </div>
+                           <div class="media media-chat media-chat-reverse">
+                              <div class="media-body">
+                                 <p>Do you have pictures of Matley Marriage?</p>
+                                 <p class="meta"><time datetime="2018">00:10</time></p>
+                              </div>
+                           </div>
+                           <div class="media media-chat">
+                              <img class="avatar" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="...">
+                              <div class="media-body">
+                                 <p>Sorry I don't have. i changed my phone.</p>
+                                 <p class="meta"><time datetime="2018">00:12</time></p>
+                              </div>
+                           </div>
+                           <div class="media media-chat media-chat-reverse">
+                              <div class="media-body">
+                                 <p>Okay then see you on sunday!!</p>
+                                 <p class="meta"><time datetime="2018">00:12</time></p>
+                              </div>
+                           </div>-->
+                           <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;">
+                              <div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+                           </div>
+                           <div class="ps-scrollbar-y-rail" style="top: 0px; height: 0px; right: 2px;">
+                              <div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 2px;"></div>
+                           </div>
+                        </div>
+                        <div class="publisher bt-1 border-light">
+                           <img class="avatar avatar-xs" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="...">
+                           <input id="publisher-input" class="publisher-input" type="text" placeholder="Write something">
+                           <span class="publisher-btn file-group">
+                           <i class="fa fa-paperclip file-browser"></i>
+                           <input type="file">
+                           </span>
+                           <a class="publisher-btn" href="#" data-abc="true"><i class="fa fa-smile"></i></a>
+                           <div id="ans-btn" class="publisher-btn  btn btn-success"  data-abc="true"><!--<i class="fa fa-paper-plane"></i>-->Answer</div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+            <div>
+                <h4>Choose topic</h4>
+                <!-- <select class="form-select" aria-label="Default select example">
+                    <option selected>ANR</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select> -->
+                <div class="list-group">
+                    <h6 class="list-group-item list-group-item-action" name="softcomputing_and_datamining">Softcomputing and Datamining</h6>               
+                    <h6 href="#" class="list-group-item list-group-item-action " name="anr">ANR</h6>
+                    <h6 href="#" class="list-group-item list-group-item-action "  name="ai">Artificial Intelligence</h6>
+                    <h6 href="#" class="list-group-item list-group-item-action "  name="simulation_of_systems">Simulation of systems</h6>
+                    <h6 href="#" class="list-group-item list-group-item-action " name="process_and_architecture">Process and Architecture</h6>
+                    <h6 href="#" class="list-group-item list-group-item-action " name = "computer_virus">Computer Virus</h6>
+                    <h6 href="#" class="list-group-item list-group-item-action list-group-item-info" name = "gis">Geographic Information Systems</h6>
+                    <h6 href="#" class="list-group-item list-group-item-action " name = "signal_processing">Signal Processing</h6>
+                    <h6 href="#" class="list-group-item list-group-item-action " name = "mobile_technologies">Mobile Technologies</h6>
+                </div>
+            </div>
+        </div>
+
+
+        <script>
+            // JavaScript for handling item selection
+            document.addEventListener('DOMContentLoaded', function() {
+                // Get all list items
+                var items = document.querySelectorAll('.list-group-item');
+
+                // Add click event listener to each item
+                items.forEach(function(item) {
+                    item.addEventListener('click', function() {
+                        // Remove the 'selected' class from all items
+                        items.forEach(function(item) {
+                            item.classList.remove('list-group-item-info');
+                        });
+
+                        // Add the 'selected' class to the clicked item
+                        this.classList.add('list-group-item-info');
+                        //console.log(this.textContent)
+                        console.log(this.getAttribute('name'))
+                    });
+                });
+            });
+
+            // Function to select the first item
+            function selectFirstItem() {
+
+                 // Get all list items
+                 var items = document.querySelectorAll('.list-group-item');
+                 // Remove the 'selected' class from all items
+                 items.forEach(function(item) {
+                    item.classList.remove('list-group-item-info');
+                 });
+
+                // Select the first item
+                items[0].classList.add('list-group-item-info');
+
+                // Get the text content of the first item
+                var content = items[0].textContent;
+                console.log("Clicked item:", content);
+            }
+
+            function setTopic(formData) {
+                formData.append('topic', "softcomputing_and_datamining");
+                try {
+                    let response =  fetch('/topic/ek', {
+                        method: "GET",
+                      
+                    });
+                    return response;
+                } catch (error) {
+                    throw error;
+                }
+            }
+
+            // Call the function to select the first item when the page loads
+            selectFirstItem();
+        </script>
+
+
+        <script>
+            var scr = 0;
+            
+            var questionList = [];
+            var answerList = [];
+            $(document).ready(function () {
+                $("#ans-btn").click(async function (event) {
+                    $("#typing").css('visibility', 'visible');
+                    event.preventDefault();
+                    const formData = new FormData();
+                    const id = document.getElementById('chat-content') ;
+                    const pub_input = document.getElementById('publisher-input')
+                    // var file = fileInput.files[0];
+                    
+                    //parse question into list here
+                    id.innerHTML += "<div class='media media-chat media-chat-reverse'>"+
+                              "<div class='media-body'>"+
+                                 "<p>"+pub_input.value+"</p>"+
+                                 "<p class='meta'><time datetime='2018'>00:06</time></p>"+
+                              "</div>"
+                            "</div>";
+                    
+
+
+                    formData.append('answer', ""+pub_input.value);
+                    formData.append('prev_ans', ""+answerList[answerList.length-1]);
+                    // formData.append('filename', file.name)
+                    let response = await fetch('/answer', {
+                        method: "POST",
+                        body: formData                
+                    });
+                    previous_answer =                
+                    processUploadResponse(id, response);
+
+                    console.log("The question to be answered is "+questionList[questionList.length-1])
+                    console.log("The answer to the question is "+answerList[answerList.length-1])
+                    console.log("The user answer to the question is "+pub_input.value)
+
+                    scr = scr + 1
+                    document.getElementById('score').innerHTML = scr
+                    //clear the input
+                    pub_input.value  = ""
+                });
+            });
+            
+
+        
+            document.addEventListener('DOMContentLoaded', async function() {
+                const formData = new FormData();
+                const id = document.getElementById('chat-content');
+                
+                formData.append('answer', "empty");
+                formData.append('prev_ans', ""+answerList[answerList.length-1]);
+                
+                let response = await fetch('/answer', {
+                    method: "POST",
+                    body: formData
+                });
+                processUploadResponse(id, response);
+            });
+                
+            
+            async function processUploadResponse(id, response){
+                var json = await response.json();
+                console.log(json.question)
+                $("#typing").css('visibility', 'hidden');
+                id.innerHTML += "<div class='media media-chat'>"+
+                    "<img class='avatar' src='https://img.icons8.com/color/36/000000/administrator-male.png' alt=''...'/>"+
+                    "<div class='media-body'>"+
+                        "<p>"+json.question+"</p>"+
+                        "<p>"+json.answer+"</p>"+
+                        // "<p>"+json.student_answer+"</p>"+
+                        //"<p>"+json.cosine_similarity+"</p>"+
+                        "<p class='meta'><time datetime='2018'>23:58</time></p>"+
+                    "</div>"+
+                "</div>";
+                questionList.push(json.question)
+                answerList.push(json.answer)
+                console.log(questionList)
+                // Scroll to the bottom of the list
+                id.scrollTop = id.scrollHeight;
+                document.getElementById('similarity_score').innerHTML = json.cosine_similarity
+            }
+            
+        </script>
+    </body>
+</html>

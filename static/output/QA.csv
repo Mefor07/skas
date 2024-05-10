@@ -1,0 +1,73 @@
+Question,Answer
+"1. What is the version and phase of the ""Model"" package?","The version of the ""Model"" package is 1.0 and the phase is Proposed."
+"2. When was the ""Model"" package last modified?","The ""Model"" package was last modified on 13.11.2023."
+"3. What is the version and phase of the ""Activity"" package?","The version and phase of the ""Activity"" package is Version 1.0 Phase 1.0 Proposed."
+"4. When was the ""Activity"" package last modified?","The ""Activity"" package was last modified on 13.11.2023."
+5. What is the version of the activity diagram?,The version of the activity diagram is 1.0.
+6. What is the name of the activity figure in Figure 1?,"The name of the activity figure in Figure 1 is ""Activity Figure 1""."
+"7. What are the elements owned by the ""Action1"" action?","The elements owned by the ""Action1"" action are:
+- Action1 : Action
+- ActivityInitial : ActivityInitial"
+"8. What is the incoming behavioral relationship of the ""Action1"" action?","The incoming behavioral relationship of the ""Action1"" action is a control flow from the ""ActivityInitial"" activity."
+"9. What is the outgoing behavioral relationship of the ""ActivityInitial"" activity?","The outgoing behavioral relationship of the ""ActivityInitial"" activity is a ControlFlow to the ""Action1"" activity."
+"10. What is the version and phase of the ""Requirements"" package?","The version and phase of the ""Requirements"" package is Version 1.0 Phase 1.0 Proposed."
+"11. When was the ""Requirements"" package last modified?","The ""Requirements"" package was last modified on 09.10.2023."
+"12. What is the version and phase of the ""Functional req"" package?","The version and phase of the ""Functional req"" package is Version 1.0 Phase 1.0 Proposed."
+"13. When was the ""Functional req"" package last modified?","The ""Functional req"" package was last modified on 09.10.2023."
+"14. What is the version of the ""User Management"" diagram?","The version of the ""User Management"" diagram is 1.0."
+15. What is the requirement code for the system notifying password expiration?,The requirement code for the system notifying password expiration is RQ012.
+16. What is the requirement code for the system allowing the creation of an invoice?,The requirement code for the system allowing the creation of an invoice is RQ001.
+17. What is the requirement code for the system recording who issued a given invoice?,The requirement code for the system recording who issued a given invoice is RQ002.
+18. What is the requirement code for the system being able to record a type of invoice?,The requirement code for the system being able to record a type of invoice is RQ003.
+19. What is the requirement code for the system being able to create an item for an invoice?,The requirement code for the system being able to create an item for an invoice is RQ004.
+20. What is the requirement code for the system allowing a maximum of 10 items per invoice?,The requirement code for the system allowing a maximum of 10 items per invoice is RQ005.
+21. What is the requirement code for the system assigning each invoice to only one customer?,The requirement code for the system assigning each invoice to only one customer is RQ006.
+"22. When was the ""Customer Management"" package last modified?","The ""Customer Management"" package was last modified on 09.10.2023."
+23. What is the requirement code for the system differentiating between VAT and non-VAT payers?,The requirement code for the system differentiating between VAT and non-VAT payers is RQ008.
+24. What is the requirement code for the system checking EU VAT registration?,The requirement code for the system checking EU VAT registration is RQ009.
+25. What is the requirement code for the system automatically reading company profiles?,The requirement code for the system automatically reading company profiles is RQ010.
+26. What is the requirement code for the system keeping customer records?,The requirement code for the system keeping customer records is RQ007.
+27. What is the requirement code for the system keeping up to 4 delivery addresses for each customer?,The requirement code for the system keeping up to 4 delivery addresses for each customer is RQ011.
+"28. What is the name of the activity figure in Figure 4 of the ""Customer Management"" package?","The name of the activity figure in Figure 4 of the ""Customer Management"" package is ""Customer Management""."
+"29. What is the version and phase of the ""Customer Management"" package?","The version and phase of the ""Customer Management"" package is 1.0 and Phase 1.0 respectively."
+"30. When was the ""Customer Management"" package last modified?","The ""Customer Management"" package was last modified on 09.10.2023."
+"31. What is the version and phase of the ""Invoice 2.0"" package?","Based on the provided information, there is no mention of an ""Invoice 2.0"" package. Therefore, I don't have"
+"32. When was the ""Invoice 2.0"" package last modified?",I don't have that information.
+"33. What are the incoming structural relationships of the ""Invoicer"" actor?","The incoming structural relationships of the ""Invoicer"" actor are:
+- Generalization from HR to User
+- Generalization from Invoicer to User"
+"34. What are the outgoing structural relationships of the ""User"" actor?","The outgoing structural relationships of the ""User"" actor are:
+
+1. Generalization from User to Invoicer
+2. Generalization from User to HR
+3. Association with Time for generating a password notification
+4. Association with Invoicer for creating a user
+5. Association with Invoicer for issuing an invoice
+6. Association with Invoicer for adding an item to an invoice
+7. Association with Time for changing a password"
+"35. What is the version and phase of the ""Add item to invoice"" use case?","The version and phase of the ""Add item to invoice"" use case is Version 1.0 and Phase 1."
+"36. When was the ""Add item to invoice"" use case last modified?","The ""Add item to invoice"" use case was last modified on 16.10.2023."
+"37. What are the elements owned by the ""Add item to invoice"" use case?","The elements owned by the ""Add item to invoice"" use case are:
+
+- Add item to invoice_ActivityGraph: Activity"
+"38. What is the version and phase of the ""Create a customer entry"" use case?","The version and phase of the ""Create a customer entry"" use case are not provided in the given context."
+"39. When was the ""Create a customer entry"" use case last modified?","The ""Create a customer entry"" use case was last modified on 09.10.2023."
+"40. What is the version and phase of the ""Create a user"" use case?","The version and phase of the ""Create a user"" use case are not provided in the given context."
+"41. When was the ""Create a user"" use case last modified?","The ""Create a user"" use case was last modified on 09.10.2023."
+"42. What is the version and phase of the ""Generate a password notification"" use case?","The version and phase of the ""Generate a password notification"" use case is Version 1.0 and Phase 1.0"
+"43. When was the ""Generate a password notification"" use case last modified?","The ""Generate a password notification"" use case was last modified on 09.10.2023."
+"44. What is the version and phase of the ""Change a password"" use case?","The version of the ""Change a password"" use case is 1.0 and the phase is 1.0."
+"45. When was the ""Change a password"" use case last modified?","The ""Change a password"" use case was last modified on 09.10.2023."
+"46. What is the version and phase of the ""Issue an invoice"" use case?","The version of the ""Issue an invoice"" use case is 1.0 and the phase is 1.0."
+"47. When was the ""Issue an invoice"" use case last modified?","The ""Issue an invoice"" use case was last modified on 13.11.2023."
+"48. What are the elements owned by the ""Issue an invoice"" use case?","The elements owned by the ""Issue an invoice"" use case are:
+
+1. Start: The use case starts when the invoicer selects a new invoice option.
+2. Search for customer: This is an included use case that allows the invoicer to search for a customer to whom the invoice will be issued.
+3. Alternate1: This is an alternate flow where the invoicer selects the options to add an item to the invoice.
+4. System will perform updates in invoice overview and perform recalculation of the prices: This is an action that is performed when the invoicer adds an item to the invoice.
+5. Use case ends with saving the invoice: This is an action that marks the end of the use case and saves the invoice.
+
+Note: There may be other elements related to the ""Issue an invoice"" use case that are not mentioned in the provided context."
+"49. What is the version and phase of the ""Issue an invoice_ActivityGraphWithAction"" activity?","The version of the ""Issue an invoice_ActivityGraphWithAction"" activity is 1.0 and the phase is 1.0."
+"50. When was the ""Issue an invoice_ActivityGraphWithAction"" activity last modified?","The ""Issue an invoice_ActivityGraphWithAction"" activity was last modified on 13.11.2023."
