@@ -1,0 +1,22 @@
+From the data-mining viewpoint fizzy logic refers to numerical computations
+based on fizzy rules, for the purpose of modeling functional relationships in a
+data set. It also encompasses t%zzyset-based methods for approximate reasoning.
+With this property fizzy logic by contrast to neural networks, is a transparent
+box with its predictions. Also it allows linguistic and qualitative interpretations
+of the outputs.
+For data-mining especially Sugeno-type fuzzy systems [1] is concern where
+the system approximates any fictional relationship with a combination of
+several linear systems, by decomposing the whole input space into several partial
+fuzzy spaces known as fuzzy sets and representing each output space with a
+linear equation as local models. The fazzy sets are described by functions called
+tizzy membership fictions as local models, which allow convenient application
+of powerful learning techniques for their identification Ilom data.
+To obtain fuzzy models from the data set, different approaches can be used,
+like fuzzy relational modeling [2], and product space clustering [3,4]. In a
+multidimensional variable space, fuzzy modeling is accomplished by means of
+one-dimensional fizzy sets obta~ed from the multidimensional fuzzy sets by
+projections onto space of each input variable [5]. The complexity of fuzzy
+modeling exponentially increases with the dimension of the fuzzy product space,
+which is known as curse of dimensionality. This may be considered as the price
+paid in return to its desirable properties as being transparent, i.e., tracing
+possibility for reasoning on fuzzy model predictions.

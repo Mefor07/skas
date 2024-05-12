@@ -1,0 +1,39 @@
+Data mining deals with search for description especially in large databases.
+Basically, this search is meant for certain information elicitation with the
+presence of others. More explicitly, data mining refers to variety of techniques to
+extract information by identi@ing relationships and global patterns that exist in
+large databases. Such information is mostly obscured among the vast amount of
+data. Since the data around the information of interest is considered to be
+irrelevant, they are effectively termed to be noise, which are practically desired
+to be absent. In this noisy environment, there are many diverse methods, which
+explain relationships or identi& patterns in the data set. Among these methods
+reference may be made to cluster analysis, discriminant analysis, regression
+analysis, principal component analysis, hypothesis testing, modeling and so
+forth.
+The majority of the data mining methods fall in the category of statistics.
+What makes the data mining methods different is the source and amount of the
+data. Namely, the source is a database, which supposedly has a big amount of
+relevant and irrelevant data in suitable and/or unsuitable form for the intended
+information to be extracted. Referring to the large size of the data set, the
+conventional statistical approaches may not be conclusive. This is because of the
+complexity of the data where only few is known about the properties so that it
+can neither be treated in a statistical framework nor in a deterministic modeling
+framework, for instance. A large data set ffom a stock market is a good example
+where apparently there is no established physical process behind so that the
+properties and behavior can only be modeled in a non-parametric form. The
+validation of such a model is subject to elaborated investigations.
+The main feature of a data set subject to mining is complexity and the
+characteristic feature of the data mining methods distinguishes themselves by
+“learning” as to the conventional statistical methods. That is, even the wellknown 
+statistical or non-statistical or alternatively parametric or non-parametric
+methods are used, the final model parameters or feature vectors of concern are
+established partly or filly by learning. Note that, in conventional statistical
+modeling for relationship or pattern identification, model or pattern parameters
+are established by statistical computation in contrast with learning in data mining
+exercise. Although statistical techniques are apparently ubiquitous in data
+mining, data mining should not be carried out with statistics unless this is
+justified. Statistical methods assist the user in preparation the data for mining.
+This assistance might be in the form of data reduction and hypothesis forming.
+Such a preparation is especially beneficial for knowledge discovery by soft
+computing following the information extraction by data mining. In this work,
+learning in soft computing is accomplished by machine learning methods

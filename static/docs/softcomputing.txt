@@ -1,0 +1,18 @@
+Soft computing possesses a variety of special methodologies that work
+synergistically and provides “intelligent” information processing capability,
+which leads to knowledge discovery. Here the involvement of the methodologies
+with learning is the key feature deemed to be essential for intelligence. In the
+traditional computing the prime attention is on precision accuracy and certainty.
+By contrast, in soft computing imprecision, uncertainty, approximate reasoning,
+and partial truth are essential concepts in computation.
+These features make the computation soft, which is similar to the neuronal
+computation in human brain with remarkable ability so that it yields similar
+outcomes but in much simpler form for decision-making in a pragmatic way.
+Among the soft computing methodologies, the outstanding paradigms are neural
+networks, fuzzy logic and genetic algorithms. In general, both neural networks
+and fuzzy systems are dynamic, parallel processing systems that establish the
+input output relationships or identify patterns as prime desiderata which are
+searched for knowledge discovery in databases. By contrast, the GA paradigm
+uses search methodology in a multidimensional space for some optimization
+tasks. This search may be motivated by a functional relationship or pattern
+identification, as is the case with neural network and fuzzy logic systems.

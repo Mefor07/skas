@@ -1,0 +1,15 @@
+Artificial Neural networks (ANN) consist of a fixed topology of artificial
+neurons connected by links in a predefine manner. They can perform
+information processing in a manner similar to a biological brain where the
+neuronal network, like biological network, is inherently nonlinear, highly
+parallel, robust and fault tolerant. The links represent synaptic weights and they
+are adapted during learning. ANN can easily handle imprecise, fi.mzy,noisy and
+probabilistic information and can generalize it to unknown tasks.
+Due to powerful learning algorithms available and multi-layered structure a
+neural network is flexible enough to handle any data-mining task for all practical
+purposes. From this viewpoint, ANN can be seen as the most convenient sol3-
+computing paradigm for data mining. The relationships present in the data set are
+represented as multivariable fictional approximation where neurons play the
+role of nonlinear models with global or local nonlinearity. With the global
+nonlinearity, a neural network is widely regarded as a black box that it reveals
+little about its predictions but it provides ease in applications to data-mining.

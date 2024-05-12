@@ -56,222 +56,222 @@ os.environ["OPENAI_API_KEY"] = ""
 
 
 
-#define database connection here
-connection = mysql.connector.connect(
-    host='localhost',
-    user='root',
-    password='',
-    database='qa_dev'
-)
+# #define database connection here
+# connection = mysql.connector.connect(
+#     host='localhost',
+#     user='root',
+#     password='',
+#     database='qa_dev'
+# )
 
 
-def count_pdf_pages(pdf_path):
-    try:
-        pdf = PdfReader(pdf_path)
-        return len(pdf.pages)
-    except Exception as e:
-        print("Error:", e)
-        return None
+# def count_pdf_pages(pdf_path):
+#     try:
+#         pdf = PdfReader(pdf_path)
+#         return len(pdf.pages)
+#     except Exception as e:
+#         print("Error:", e)
+#         return None
 
 
-def file_processing(file_path):
-    loader = PyPDFLoader(file_path)
-    data = loader.load()
+# def file_processing(file_path):
+#     loader = PyPDFLoader(file_path)
+#     data = loader.load()
     
-    #summarize data
-    
-
-    question_gen = ''
-
-    for page in data:
-        question_gen += page.page_content
+#     #summarize data
     
 
-    splitter_ques_gen = TokenTextSplitter(
-        model_name = 'gpt-3.5-turbo',
-        chunk_size = 1000, #changed from 10000 to 1000
-        chunk_overlap = 200
-    )
+#     question_gen = ''
 
-    chunks_ques_gen = splitter_ques_gen.split_text(question_gen)
+#     for page in data:
+#         question_gen += page.page_content
+    
 
-    document_ques_gen = [Document(page_content=t) for t in chunks_ques_gen]
+#     splitter_ques_gen = TokenTextSplitter(
+#         model_name = 'gpt-3.5-turbo',
+#         chunk_size = 1000, #changed from 10000 to 1000
+#         chunk_overlap = 200
+#     )
 
+#     chunks_ques_gen = splitter_ques_gen.split_text(question_gen)
 
-    splitter_ans_gen = TokenTextSplitter(
-        model_name = 'gpt-3.5-turbo',
-        chunk_size = 1000,
-        chunk_overlap = 100
-    )
-
-    document_answer_gen = splitter_ans_gen.split_documents(document_ques_gen)
-
-    return document_ques_gen, document_answer_gen
+#     document_ques_gen = [Document(page_content=t) for t in chunks_ques_gen]
 
 
-def llm_pipeline(file_path):
+#     splitter_ans_gen = TokenTextSplitter(
+#         model_name = 'gpt-3.5-turbo',
+#         chunk_size = 1000,
+#         chunk_overlap = 100
+#     )
 
-    document_ques_gen, document_answer_gen = file_processing(file_path)
+#     document_answer_gen = splitter_ans_gen.split_documents(document_ques_gen)
 
-    llm_ques_gen_pipeline = ChatOpenAI(
-        temperature = 0.3,
-        model = "gpt-3.5-turbo"
-    )
-
-    prompt_template = """
-    You are an expert at creating questions based on study materials and reference guides.
-    Your goal is to prepare a student or teacher for their exams and tests.
-    You do this by asking questions about the text below:
-    ------------
-    {text}
-    ------------
-    Create questions that will prepare the student or teacher for their test
-    Make sure not to lose any important information.
-    QUESTIONS:
-    """
-
-    PROMPT_QUESTIONS = PromptTemplate(
-        template = prompt_template,
-        input_variables = ["text"]
-    )
-
-    refine_template = ("""
-    You are an expert at creating practice questions based on study materials and reference guides.
-    Your goal is to help a student or teacher for their exams and tests.
-    We have received some practice questions to a certain extent: {existing_answer}.
-    We have the option to refine the existing questions or add new ones.
-    (only if necessary) with some more context below.
-    ------------
-    {text}
-    ------------
-
-    Given the new context, refine the original questions in English.
-    If the context is not helpful, please provide the original questions.
-    QUESTIONS:
-    """
-    )
-
-    REFINE_PROMPT_QUESTIONS = PromptTemplate(
-        input_variables = ["extisting_answer", "text"],
-        template = refine_template
-    )
-
-    ques_gen_chain = load_summarize_chain(
-        llm = llm_ques_gen_pipeline,
-        chain_type = "refine",
-        verbose = True,
-        question_prompt = PROMPT_QUESTIONS,
-        refine_prompt = REFINE_PROMPT_QUESTIONS
-    )
-
-    ques = ques_gen_chain.run(document_ques_gen)
-
-    embeddings = OpenAIEmbeddings()
-
-    vector_store = FAISS.from_documents(document_answer_gen, embeddings)
-
-    llm_answer_gen = ChatOpenAI(
-        temperature = 0.1,
-        model = "gpt-3.5-turbo"
-    )
-
-    ques_list = ques.split("\n")
-
-    filtered_ques_list = [element for element in ques_list if element.endswith('?') or element.endswith('.')]
-
-    answer_generation_chain = RetrievalQA.from_chain_type(llm=llm_answer_gen, 
-    chain_type="stuff", 
-    retriever=vector_store.as_retriever())
-
-    return answer_generation_chain, filtered_ques_list
+#     return document_ques_gen, document_answer_gen
 
 
+# def llm_pipeline(file_path):
+
+#     document_ques_gen, document_answer_gen = file_processing(file_path)
+
+#     llm_ques_gen_pipeline = ChatOpenAI(
+#         temperature = 0.3,
+#         model = "gpt-3.5-turbo"
+#     )
+
+#     prompt_template = """
+#     You are an expert at creating questions based on study materials and reference guides.
+#     Your goal is to prepare a student or teacher for their exams and tests.
+#     You do this by asking questions about the text below:
+#     ------------
+#     {text}
+#     ------------
+#     Create questions that will prepare the student or teacher for their test
+#     Make sure not to lose any important information.
+#     QUESTIONS:
+#     """
+
+#     PROMPT_QUESTIONS = PromptTemplate(
+#         template = prompt_template,
+#         input_variables = ["text"]
+#     )
+
+#     refine_template = ("""
+#     You are an expert at creating practice questions based on study materials and reference guides.
+#     Your goal is to help a student or teacher for their exams and tests.
+#     We have received some practice questions to a certain extent: {existing_answer}.
+#     We have the option to refine the existing questions or add new ones.
+#     (only if necessary) with some more context below.
+#     ------------
+#     {text}
+#     ------------
+
+#     Given the new context, refine the original questions in English.
+#     If the context is not helpful, please provide the original questions.
+#     QUESTIONS:
+#     """
+#     )
+
+#     REFINE_PROMPT_QUESTIONS = PromptTemplate(
+#         input_variables = ["extisting_answer", "text"],
+#         template = refine_template
+#     )
+
+#     ques_gen_chain = load_summarize_chain(
+#         llm = llm_ques_gen_pipeline,
+#         chain_type = "refine",
+#         verbose = True,
+#         question_prompt = PROMPT_QUESTIONS,
+#         refine_prompt = REFINE_PROMPT_QUESTIONS
+#     )
+
+#     ques = ques_gen_chain.run(document_ques_gen)
+
+#     embeddings = OpenAIEmbeddings()
+
+#     vector_store = FAISS.from_documents(document_answer_gen, embeddings)
+
+#     llm_answer_gen = ChatOpenAI(
+#         temperature = 0.1,
+#         model = "gpt-3.5-turbo"
+#     )
+
+#     ques_list = ques.split("\n")
+
+#     filtered_ques_list = [element for element in ques_list if element.endswith('?') or element.endswith('.')]
+
+#     answer_generation_chain = RetrievalQA.from_chain_type(llm=llm_answer_gen, 
+#     chain_type="stuff", 
+#     retriever=vector_store.as_retriever())
+
+#     return answer_generation_chain, filtered_ques_list
 
 
-def get_csv (file_path):
-    answer_generation_chain, ques_list = llm_pipeline(file_path)
-    base_folder = 'static/output/'
-    if not os.path.isdir(base_folder):
-        os.mkdir(base_folder)
-    output_file = base_folder+"QA.csv"
-    with open(output_file, "w", newline="", encoding="utf-8") as csvfile:
-        csv_writer = csv.writer(csvfile)
-        csv_writer.writerow(["Question", "Answer"])  # Writing the header row
 
-        #make connection to the database here.
-        cursor = connection.cursor()
 
-        for question in ques_list:
-            print("Question: ", question)
-            answer = answer_generation_chain.run(question)
-            print("Answer: ", answer)
-            print("--------------------------------------------------\n\n")
+# def get_csv (file_path):
+#     answer_generation_chain, ques_list = llm_pipeline(file_path)
+#     base_folder = 'static/output/'
+#     if not os.path.isdir(base_folder):
+#         os.mkdir(base_folder)
+#     output_file = base_folder+"QA.csv"
+#     with open(output_file, "w", newline="", encoding="utf-8") as csvfile:
+#         csv_writer = csv.writer(csvfile)
+#         csv_writer.writerow(["Question", "Answer"])  # Writing the header row
 
-            # Save answer to CSV file
-            csv_writer.writerow([question, answer])
+#         #make connection to the database here.
+#         cursor = connection.cursor()
 
-            #save question and answer to database
-            insert_query = "INSERT INTO q_a (question, answer) VALUES (%s, %s)"
-            values = (question, answer)
-            cursor.execute(insert_query, values)
+#         for question in ques_list:
+#             print("Question: ", question)
+#             answer = answer_generation_chain.run(question)
+#             print("Answer: ", answer)
+#             print("--------------------------------------------------\n\n")
+
+#             # Save answer to CSV file
+#             csv_writer.writerow([question, answer])
+
+#             #save question and answer to database
+#             insert_query = "INSERT INTO q_a (question, answer) VALUES (%s, %s)"
+#             values = (question, answer)
+#             cursor.execute(insert_query, values)
             
-    # Close the cursor and connection
-    cursor.close()
-    connection.close()        
-    return output_file
+#     # Close the cursor and connection
+#     cursor.close()
+#     connection.close()        
+#     return output_file
 
 
-word = re.compile(r"\w+")
+# word = re.compile(r"\w+")
 
 
-def cosine_similarity(vector_1, vector_2):
-    inter = set(vector_1.keys()) & set(vector_1.keys())
-    num = sum([vector_1[i] * vector_2[i] for i in inter])
+# def cosine_similarity(vector_1, vector_2):
+#     inter = set(vector_1.keys()) & set(vector_1.keys())
+#     num = sum([vector_1[i] * vector_2[i] for i in inter])
 
-    sen_1 = sum([vector_1[i] ** 2 for i in list(vector_1.keys())])
-    sen_2 = sum([vector_1[i] ** 2 for i in list(vector_1.keys())])
-    denominator = math.sqrt(sen_1) * math.sqrt(sen_2)
+#     sen_1 = sum([vector_1[i] ** 2 for i in list(vector_1.keys())])
+#     sen_2 = sum([vector_1[i] ** 2 for i in list(vector_1.keys())])
+#     denominator = math.sqrt(sen_1) * math.sqrt(sen_2)
 
-    if not denominator:
-        return 0.0
-    else:
-        return float(num) / denominator
-
-
-def generate_vectors(sent):
-    w = word.findall(sent)
-    return Count(w)
+#     if not denominator:
+#         return 0.0
+#     else:
+#         return float(num) / denominator
 
 
-@app.get("/")
-async def index(request: Request):
-    return templates.TemplateResponse("chatbot.html", {"request": request})
+# def generate_vectors(sent):
+#     w = word.findall(sent)
+#     return Count(w)
 
 
-@app.post("/upload")
-async def chat(request: Request, pdf_file: bytes = File(), filename: str = Form(...)):
-    base_folder = 'static/docs/'
-    if not os.path.isdir(base_folder):
-        os.mkdir(base_folder)
-    pdf_filename = os.path.join(base_folder, filename)
-
-    async with aiofiles.open(pdf_filename, 'wb') as f:
-        await f.write(pdf_file)
-    # page_count = count_pdf_pages(pdf_filename)
-    # if page_count > 5:
-    #     return Response(jsonable_encoder(json.dumps({"msg": 'error'})))
-    response_data = jsonable_encoder(json.dumps({"msg": 'success',"pdf_filename": pdf_filename}))
-    res = Response(response_data)
-    return res
+# @app.get("/")
+# async def index(request: Request):
+#     return templates.TemplateResponse("chatbot.html", {"request": request})
 
 
+# @app.post("/upload")
+# async def chat(request: Request, pdf_file: bytes = File(), filename: str = Form(...)):
+#     base_folder = 'static/docs/'
+#     if not os.path.isdir(base_folder):
+#         os.mkdir(base_folder)
+#     pdf_filename = os.path.join(base_folder, filename)
 
-@app.post("/analyze")
-async def chat(request: Request, pdf_filename: str = Form(...)):
-    output_file = get_csv(pdf_filename)
-    response_data = jsonable_encoder(json.dumps({"output_file": output_file}))
-    res = Response(response_data)
-    return res
+#     async with aiofiles.open(pdf_filename, 'wb') as f:
+#         await f.write(pdf_file)
+#     # page_count = count_pdf_pages(pdf_filename)
+#     # if page_count > 5:
+#     #     return Response(jsonable_encoder(json.dumps({"msg": 'error'})))
+#     response_data = jsonable_encoder(json.dumps({"msg": 'success',"pdf_filename": pdf_filename}))
+#     res = Response(response_data)
+#     return res
+
+
+
+# @app.post("/analyze")
+# async def chat(request: Request, pdf_filename: str = Form(...)):
+#     output_file = get_csv(pdf_filename)
+#     response_data = jsonable_encoder(json.dumps({"output_file": output_file}))
+#     res = Response(response_data)
+#     return res
 
 
 
@@ -338,7 +338,46 @@ async def chat(request: Request, pdf_filename: str = Form(...)):
 # learning in soft computing is accomplished by machine learning methods
 # """
 
-sample_text = """Soft computing possesses a variety of special methodologies that work
+# sample_text = """Soft computing possesses a variety of special methodologies that work
+# synergistically and provides “intelligent” information processing capability,
+# which leads to knowledge discovery. Here the involvement of the methodologies
+# with learning is the key feature deemed to be essential for intelligence. In the
+# traditional computing the prime attention is on precision accuracy and certainty.
+# By contrast, in soft computing imprecision, uncertainty, approximate reasoning,
+# and partial truth are essential concepts in computation.
+# These features make the computation soft, which is similar to the neuronal
+# computation in human brain with remarkable ability so that it yields similar
+# outcomes but in much simpler form for decision-making in a pragmatic way.
+# Among the soft computing methodologies, the outstanding paradigms are neural
+# networks, fuzzy logic and genetic algorithms. In general, both neural networks
+# and fuzzy systems are dynamic, parallel processing systems that establish the
+# input output relationships or identify patterns as prime desiderata which are
+# searched for knowledge discovery in databases. By contrast, the GA paradigm
+# uses search methodology in a multidimensional space for some optimization
+# tasks. This search may be motivated by a functional relationship or pattern
+# identification, as is the case with neural network and fuzzy logic systems.
+# """
+
+
+
+# Initialize the DoctranQATransformer
+qa_transformer = DoctranQATransformer(openai_api_model='gpt-3.5-turbo')
+
+file_path = "static/docs/skas.txt"
+with open(file_path, "r") as file:
+    sample_text = file.read()
+    print(sample_text)
+
+
+
+
+#restart the server here through the post function
+# Endpoint to restart the FastAPI server
+@app.post("/restart-server")
+async def restart_server(request: Request, topic: str = Form(...)):
+    # start_server()
+    #return {"message": "Server restarted successfully."+topic}
+    sample_text = """Soft computing possesses a variety of special methodologies that work
 synergistically and provides “intelligent” information processing capability,
 which leads to knowledge discovery. Here the involvement of the methodologies
 with learning is the key feature deemed to be essential for intelligence. In the
@@ -357,10 +396,9 @@ uses search methodology in a multidimensional space for some optimization
 tasks. This search may be motivated by a functional relationship or pattern
 identification, as is the case with neural network and fuzzy logic systems.
 """
-
-# Initialize the DoctranQATransformer
-qa_transformer = DoctranQATransformer(openai_api_model='gpt-3.5-turbo')
-
+    # sample_text = topic
+    print("message : Server restarted successfully."+sample_text)
+    
 
 # Transform the document to generate a question and answer
 transformed_document = qa_transformer.transform_documents([Document(page_content=sample_text)])

@@ -537,10 +537,10 @@
                     <option value="3">Three</option>
                 </select> -->
                 <div class="list-group">
-                    <h6 class="list-group-item list-group-item-action" name="softcomputing_and_datamining">Softcomputing and Datamining</h6>               
-                    <h6 href="#" class="list-group-item list-group-item-action " name="anr">ANR</h6>
-                    <h6 href="#" class="list-group-item list-group-item-action "  name="ai">Artificial Intelligence</h6>
-                    <h6 href="#" class="list-group-item list-group-item-action "  name="simulation_of_systems">Simulation of systems</h6>
+                    <h6 class="list-group-item list-group-item-action" name="softcomputing">Softcomputing</h6>               
+                    <h6 href="#" class="list-group-item list-group-item-action " name="datamining">Datamining</h6>
+                    <h6 href="#" class="list-group-item list-group-item-action "  name="anr">Artificial Neural Networks</h6>
+                    <h6 href="#" class="list-group-item list-group-item-action "  name="fuzzy_logic">Fuzzy logic</h6>
                     <h6 href="#" class="list-group-item list-group-item-action " name="process_and_architecture">Process and Architecture</h6>
                     <h6 href="#" class="list-group-item list-group-item-action " name = "computer_virus">Computer Virus</h6>
                     <h6 href="#" class="list-group-item list-group-item-action list-group-item-info" name = "gis">Geographic Information Systems</h6>
@@ -569,6 +569,9 @@
                         this.classList.add('list-group-item-info');
                         //console.log(this.textContent)
                         console.log(this.getAttribute('name'))
+                        
+                        //formData.append('topic', "anr");
+                        setTopic(this.getAttribute('name'))
                     });
                 });
             });
@@ -591,17 +594,13 @@
                 console.log("Clicked item:", content);
             }
 
-            function setTopic(formData) {
-                formData.append('topic', "softcomputing_and_datamining");
-                try {
-                    let response =  fetch('/topic/ek', {
-                        method: "GET",
-                      
-                    });
-                    return response;
-                } catch (error) {
-                    throw error;
-                }
+            function setTopic(top) {
+                const formData = new FormData();
+                formData.append('topic', top);
+                let response =  fetch('/restart-server', {
+                        method: "POST",
+                        body: formData                
+                });
             }
 
             // Call the function to select the first item when the page loads
